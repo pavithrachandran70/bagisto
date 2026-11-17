@@ -175,6 +175,8 @@ return [
             'orders' => [
                 'action' => 'アクション',
                 'action-view' => '表示',
+                'channel' => 'チャネル',
+                'default-channel' => 'デフォルトストア',
                 'empty-order' => 'まだ製品を注文していません',
                 'order' => '注文',
                 'order-date' => '注文日',

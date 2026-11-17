@@ -3,28 +3,41 @@
 namespace Webkul\Shop\DataGrids;
 
 use Illuminate\Support\Facades\DB;
+use Webkul\Core\Models\ChannelProxy;
 use Webkul\DataGrid\DataGrid;
 use Webkul\Sales\Models\Order;
+use Webkul\Shop\Support\OrderChannelName;
 
 class OrderDataGrid extends DataGrid
 {
     /**
      * Prepare query builder.
-     *
-     * @return void
      */
     public function prepareQueryBuilder()
     {
+        $locale = app()->getLocale();
+
+        $fallbackLocale = config('translatable.fallback_locale');
+
+        $includeFallbackLocale = is_string($fallbackLocale)
+            && $fallbackLocale !== ''
+            && $fallbackLocale !== $locale;
+
+        $channelName = $this->channelNameExpression($locale, $includeFallbackLocale ? $fallbackLocale : null);
+
         $queryBuilder = DB::table('orders')
             ->addSelect(
                 'orders.id',
                 'orders.increment_id',
+                DB::raw($channelName.' as channel_name'),
                 'orders.status',
                 'orders.created_at',
                 'orders.grand_total',
                 'orders.order_currency_code'
             )
-            ->where('customer_id', auth()->guard('customer')->user()->id);
+            ->where('orders.customer_id', auth()->guard('customer')->user()->id);
+
+        $this->addFilter('channel_name', DB::raw($channelName));
 
         return $queryBuilder;
     }
@@ -39,6 +52,15 @@ class OrderDataGrid extends DataGrid
         $this->addColumn([
             'index' => 'increment_id',
             'label' => trans('shop::app.customers.account.orders.order-id'),
+            'type' => 'string',
+            'searchable' => true,
+            'filterable' => true,
+            'sortable' => true,
+        ]);
+
+        $this->addColumn([
+            'index' => 'channel_name',
+            'label' => trans('shop::app.customers.account.orders.channel'),
             'type' => 'string',
             'searchable' => true,
             'filterable' => true,
@@ -147,5 +169,47 @@ class OrderDataGrid extends DataGrid
                 return route('shop.customers.account.orders.view', $row->id);
             },
         ]);
+    }
+
+    /**
+     * SQL expression for the channel name: stored name, channel translation, then the default channel.
+     */
+    private function channelNameExpression(string $locale, ?string $fallbackLocale): string
+    {
+        $prefix = DB::getTablePrefix();
+
+        $names = [
+            'NULLIF('.$prefix.'orders.channel_name, \'\')',
+            $this->translatedChannelName($prefix, $locale),
+        ];
+
+        if ($fallbackLocale !== null) {
+            $names[] = $this->translatedChannelName($prefix, $fallbackLocale);
+        }
+
+        $names[] = $this->quote(OrderChannelName::fallback());
+
+        return 'COALESCE('.implode(', ', $names).')';
+    }
+
+    /**
+     * Channel translation for one locale when the order's channel record is that channel.
+     */
+    private function translatedChannelName(string $prefix, string $locale): string
+    {
+        return 'NULLIF((SELECT '.$prefix.'channel_translations.name'
+            .' FROM '.$prefix.'channel_translations'
+            .' WHERE '.$prefix.'channel_translations.channel_id = '.$prefix.'orders.channel_id'
+            .' AND '.$prefix.'orders.channel_type = '.$this->quote(ChannelProxy::modelClass())
+            .' AND '.$prefix.'channel_translations.locale = '.$this->quote($locale)
+            .' LIMIT 1), \'\')';
+    }
+
+    /**
+     * Quote a value so it can be embedded in a channel-name expression.
+     */
+    private function quote(string $value): string
+    {
+        return DB::connection()->escape($value);
     }
 }

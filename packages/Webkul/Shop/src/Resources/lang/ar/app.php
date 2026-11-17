@@ -175,6 +175,8 @@ return [
             'orders' => [
                 'action' => 'إجراء',
                 'action-view' => 'عرض',
+                'channel' => 'القناة',
+                'default-channel' => 'المتجر الافتراضي',
                 'empty-order' => 'لم تقم بطلب أي منتج حتى الآن',
                 'order' => 'طلب',
                 'order-date' => 'تاريخ الطلب',

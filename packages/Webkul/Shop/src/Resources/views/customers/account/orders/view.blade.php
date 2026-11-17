@@ -87,6 +87,8 @@
             $hasCustomerRestrictedItem = $order->items->contains(
                 fn ($item) => ! $item->isCancelableByCustomer()
             );
+
+            $orderChannelName = \Webkul\Shop\Support\OrderChannelName::forOrder($order);
         @endphp
 
         @if ($hasCustomerRestrictedItem)
@@ -124,6 +126,12 @@
                             @lang('shop::app.customers.account.orders.view.information.placed-on')
 
                             {{ core()->formatDate($order->created_at, 'd M Y') }}
+                        </div>
+
+                        <div class="mt-1 wrap-anywhere text-base font-medium">
+                            @lang('shop::app.customers.account.orders.channel'):
+
+                            {{ $orderChannelName }}
                         </div>
 
                         <!-- Order Details -->
@@ -444,6 +452,12 @@
                                     @lang('shop::app.customers.account.orders.view.order-id'):
 
                                     <p class="text-black">#{{ $order->increment_id }}</p>
+                                </div>
+
+                                <div>
+                                    @lang('shop::app.customers.account.orders.channel'):
+
+                                    <p class="wrap-anywhere text-black">{{ $orderChannelName }}</p>
                                 </div>
 
                                 <div>

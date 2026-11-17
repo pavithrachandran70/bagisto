@@ -175,6 +175,8 @@ return [
             'orders' => [
                 'action' => 'Ação',
                 'action-view' => 'Ver',
+                'channel' => 'Canal',
+                'default-channel' => 'Loja padrão',
                 'empty-order' => 'Você ainda não pediu nenhum produto',
                 'order' => 'Pedido',
                 'order-date' => 'Data do pedido',

@@ -36,7 +36,7 @@
         <div class="max-md:hidden">
             <x-shop::datagrid
                 :src="route('shop.customers.account.orders.index')"
-                :shimmerColumns="5"
+                :shimmerColumns="6"
             />
         </div>
 
@@ -74,7 +74,11 @@
                                     <div class="flex justify-between">
                                         <div class="text-sm font-semibold">
                                             @lang('shop::app.customers.account.orders.order-id'): #@{{ record.increment_id }}
-    
+
+                                            <p class="wrap-anywhere text-xs font-normal text-neutral-500">
+                                                @lang('shop::app.customers.account.orders.channel'): @{{ record.channel_name }}
+                                            </p>
+
                                             <p class="text-xs font-normal text-neutral-500">
                                                 @{{ record.created_at }}
                                             </p>

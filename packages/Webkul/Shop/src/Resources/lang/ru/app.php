@@ -175,6 +175,8 @@ return [
             'orders' => [
                 'action' => 'Действие',
                 'action-view' => 'Просмотр',
+                'channel' => 'Канал',
+                'default-channel' => 'Магазин по умолчанию',
                 'empty-order' => 'Вы еще не заказывали ни одного продукта',
                 'order' => 'Заказ',
                 'order-date' => 'Дата заказа',

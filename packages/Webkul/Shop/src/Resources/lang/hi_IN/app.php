@@ -175,6 +175,8 @@ return [
             'orders' => [
                 'action' => 'कार्रवाई',
                 'action-view' => 'देखें',
+                'channel' => 'चैनल',
+                'default-channel' => 'डिफ़ॉल्ट स्टोर',
                 'empty-order' => 'आपने अभी तक कोई उत्पाद नहीं ऑर्डर किया है',
                 'order' => 'आदेश',
                 'order-date' => 'आदेश की तारीख',

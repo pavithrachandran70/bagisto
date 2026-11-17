@@ -175,6 +175,8 @@ return [
             'orders' => [
                 'action' => 'Aksi',
                 'action-view' => 'Lihat',
+                'channel' => 'Saluran',
+                'default-channel' => 'Toko Bawaan',
                 'empty-order' => 'Anda belum memesan produk apa pun.',
                 'order' => 'Pesanan',
                 'order-date' => 'Tanggal Pesanan',
