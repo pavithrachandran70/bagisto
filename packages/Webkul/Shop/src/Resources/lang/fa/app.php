@@ -175,6 +175,7 @@ return [
             'orders' => [
                 'action' => 'عملیات',
                 'action-view' => 'مشاهده',
+                'channel' => 'کانال',
                 'empty-order' => 'شما هنوز هیچ محصولی سفارش نداده‌اید',
                 'order' => 'سفارش',
                 'order-date' => 'تاریخ سفارش',

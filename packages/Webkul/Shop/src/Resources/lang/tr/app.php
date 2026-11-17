@@ -175,6 +175,7 @@ return [
             'orders' => [
                 'action' => 'İşlem',
                 'action-view' => 'Görüntüle',
+                'channel' => 'Kanal',
                 'empty-order' => 'Henüz bir sipariş vermediniz.',
                 'order' => 'Sipariş',
                 'order-date' => 'Sipariş Tarihi',

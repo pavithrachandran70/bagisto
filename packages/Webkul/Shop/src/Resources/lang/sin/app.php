@@ -175,6 +175,7 @@ return [
             'orders' => [
                 'action' => 'කาර්වාස',
                 'action-view' => 'දදන්',
+                'channel' => 'චැනලය',
                 'empty-order' => 'ඔබට තවත් නිශ්චල කර නොමැත',
                 'order' => 'ඇණවුම',
                 'order-date' => 'ඇණවුම් දිනය',

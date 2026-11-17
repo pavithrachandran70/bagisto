@@ -175,6 +175,7 @@ return [
             'orders' => [
                 'action' => 'Action',
                 'action-view' => 'View',
+                'channel' => 'Channel',
                 'empty-order' => 'You have not ordered any product yet',
                 'order' => 'Order',
                 'order-date' => 'Order Date',

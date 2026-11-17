@@ -175,6 +175,7 @@ return [
             'orders' => [
                 'action' => 'কর্ম',
                 'action-view' => 'দেখা',
+                'channel' => 'চ্যানেল',
                 'empty-order' => 'আপনি এখনও কোনও পণ্য অর্ডার করেন নি',
                 'order' => 'অর্ডার',
                 'order-date' => 'অর্ডারের তারিখ',

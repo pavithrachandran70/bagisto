@@ -19,6 +19,7 @@ class OrderDataGrid extends DataGrid
             ->addSelect(
                 'orders.id',
                 'orders.increment_id',
+                'orders.channel_name',
                 'orders.status',
                 'orders.created_at',
                 'orders.grand_total',
@@ -39,6 +40,15 @@ class OrderDataGrid extends DataGrid
         $this->addColumn([
             'index' => 'increment_id',
             'label' => trans('shop::app.customers.account.orders.order-id'),
+            'type' => 'string',
+            'searchable' => true,
+            'filterable' => true,
+            'sortable' => true,
+        ]);
+
+        $this->addColumn([
+            'index' => 'channel_name',
+            'label' => trans('shop::app.customers.account.orders.channel'),
             'type' => 'string',
             'searchable' => true,
             'filterable' => true,

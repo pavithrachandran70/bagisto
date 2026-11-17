@@ -7,6 +7,8 @@
             <div class="grid">
                 <div class="shimmer h-5 w-32"></div>
 
+                <div class="shimmer mt-1 h-4 w-28"></div>
+
                 <div class="shimmer h-4 w-24"></div>
             </div>
 

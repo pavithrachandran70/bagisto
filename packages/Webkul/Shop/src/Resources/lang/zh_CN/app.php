@@ -175,6 +175,7 @@ return [
             'orders' => [
                 'action' => '操作',
                 'action-view' => '查看',
+                'channel' => '渠道',
                 'empty-order' => '您还没有订购任何产品',
                 'order' => '订单',
                 'order-date' => '订单日期',

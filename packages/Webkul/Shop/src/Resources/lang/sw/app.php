@@ -175,6 +175,7 @@ return [
             'orders' => [
                 'action' => 'Kitendo',
                 'action-view' => 'Angalia',
+                'channel' => 'Chaneli',
                 'empty-order' => 'Bado hujaagiza bidhaa yoyote',
                 'order' => 'Oda',
                 'order-date' => 'Tarehe ya Oda',
