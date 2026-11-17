@@ -176,6 +176,7 @@ return [
                 'action' => 'عملیات',
                 'action-view' => 'مشاهده',
                 'channel' => 'کانال',
+                'default-channel' => 'فروشگاه پیش‌فرض',
                 'empty-order' => 'شما هنوز هیچ محصولی سفارش نداده‌اید',
                 'order' => 'سفارش',
                 'order-date' => 'تاریخ سفارش',

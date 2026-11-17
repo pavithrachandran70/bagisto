@@ -176,6 +176,7 @@ return [
                 'action' => 'İşlem',
                 'action-view' => 'Görüntüle',
                 'channel' => 'Kanal',
+                'default-channel' => 'Varsayılan Mağaza',
                 'empty-order' => 'Henüz bir sipariş vermediniz.',
                 'order' => 'Sipariş',
                 'order-date' => 'Sipariş Tarihi',

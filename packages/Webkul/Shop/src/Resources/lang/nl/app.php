@@ -176,6 +176,7 @@ return [
                 'action' => 'Actie',
                 'action-view' => 'Bekijken',
                 'channel' => 'Kanaal',
+                'default-channel' => 'Standaardwinkel',
                 'empty-order' => 'U heeft nog geen product besteld',
                 'order' => 'Bestelling',
                 'order-date' => 'Besteldatum',

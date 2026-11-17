@@ -1,5 +1,6 @@
 <?php
 
+use Webkul\Core\Models\Channel;
 use Webkul\Customer\Models\Customer;
 use Webkul\Sales\Models\Order;
 
@@ -59,13 +60,17 @@ it('should show the channel stored on each order in the list', function () {
         ->toBe(trans('shop::app.customers.account.orders.channel'));
 });
 
-it('should keep the channel label when an order has no channel', function () {
+it('should show the channel record name when an order has no stored channel name', function () {
     $customer = Customer::factory()->create();
+
+    $channel = Channel::factory()->create();
+
+    $channel->translations()->update(['name' => 'Wholesale Desk']);
 
     $order = $this->createOrder([
         'channel_name' => null,
-        'channel_id' => null,
-        'channel_type' => null,
+        'channel_id' => $channel->id,
+        'channel_type' => Channel::class,
     ], customer: $customer);
 
     $this->loginAsCustomer($customer);
@@ -74,7 +79,35 @@ it('should keep the channel label when an order has no channel', function () {
         ->assertOk()
         ->json('records');
 
-    expect(collect($records)->firstWhere('id', $order->id)['channel_name'])->toBeNull();
+    expect(collect($records)->firstWhere('id', $order->id)['channel_name'])->toBe('Wholesale Desk');
+});
+
+it('should show the default channel when an order has no channel', function () {
+    $customer = Customer::factory()->create();
+
+    $missingName = $this->createOrder([
+        'channel_name' => null,
+        'channel_id' => null,
+        'channel_type' => null,
+    ], customer: $customer);
+
+    $blankName = $this->createOrder([
+        'channel_name' => '',
+        'channel_id' => null,
+        'channel_type' => null,
+    ], customer: $customer);
+
+    $this->loginAsCustomer($customer);
+
+    $records = collect(getJson(route('shop.customers.account.orders.index'), ['X-Requested-With' => 'XMLHttpRequest'])
+        ->assertOk()
+        ->json('records'));
+
+    $defaultChannelName = core()->getDefaultChannel()->name;
+
+    expect($records->firstWhere('id', $missingName->id)['channel_name'])->toBe($defaultChannelName)
+        ->and($records->firstWhere('id', $blankName->id)['channel_name'])->toBe($defaultChannelName)
+        ->and($defaultChannelName)->not->toBeEmpty();
 });
 
 // ============================================================================
@@ -122,9 +155,13 @@ it('should show the channel label when the order has no channel at all', functio
 
     $this->loginAsCustomer($customer);
 
-    get(route('shop.customers.account.orders.view', $order->id))
+    $response = get(route('shop.customers.account.orders.view', $order->id))
         ->assertOk()
         ->assertSeeText(trans('shop::app.customers.account.orders.channel'));
+
+    $visible = preg_replace('/\s+/', ' ', strip_tags($response->getContent()));
+
+    expect($visible)->toContain(trans('shop::app.customers.account.orders.channel').': '.core()->getDefaultChannel()->name);
 });
 
 it('should not show the order of another customer', function () {

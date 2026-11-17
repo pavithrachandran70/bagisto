@@ -88,7 +88,7 @@
                 fn ($item) => ! $item->isCancelableByCustomer()
             );
 
-            $orderChannelName = $order->channel_name ?: $order->channel?->name;
+            $orderChannelName = \Webkul\Shop\Support\OrderChannelName::forOrder($order);
         @endphp
 
         @if ($hasCustomerRestrictedItem)

@@ -176,6 +176,7 @@ return [
                 'action' => 'Aktion',
                 'action-view' => 'Ansehen',
                 'channel' => 'Kanal',
+                'default-channel' => 'Standardshop',
                 'empty-order' => 'Sie haben noch kein Produkt bestellt',
                 'order' => 'Bestellung',
                 'order-date' => 'Bestelldatum',

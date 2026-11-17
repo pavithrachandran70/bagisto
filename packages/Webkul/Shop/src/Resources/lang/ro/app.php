@@ -176,6 +176,7 @@ return [
                 'action' => 'Acțiune',
                 'action-view' => 'Vizualizare',
                 'channel' => 'Canal',
+                'default-channel' => 'Magazin implicit',
                 'empty-order' => 'Nu ați comandat încă niciun produs',
                 'order' => 'Comandă',
                 'order-date' => 'Data comenzii',

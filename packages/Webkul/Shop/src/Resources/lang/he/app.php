@@ -176,6 +176,7 @@ return [
                 'action' => 'פעולה',
                 'action-view' => 'צפה',
                 'channel' => 'ערוץ',
+                'default-channel' => 'חנות ברירת מחדל',
                 'empty-order' => 'עדיין לא הזמנת מוצר כלשהו',
                 'order' => 'הזמנה',
                 'order-date' => 'תאריך הזמנה',

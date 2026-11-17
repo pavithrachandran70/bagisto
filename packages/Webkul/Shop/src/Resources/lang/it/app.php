@@ -176,6 +176,7 @@ return [
                 'action' => 'Azione',
                 'action-view' => 'Visualizza',
                 'channel' => 'Canale',
+                'default-channel' => 'Negozio predefinito',
                 'empty-order' => 'Non hai ancora ordinato alcun prodotto',
                 'order' => 'Ordine',
                 'order-date' => 'Data dell\'ordine',

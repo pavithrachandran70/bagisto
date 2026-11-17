@@ -176,6 +176,7 @@ return [
                 'action' => 'Kitendo',
                 'action-view' => 'Angalia',
                 'channel' => 'Chaneli',
+                'default-channel' => 'Duka Chaguo-msingi',
                 'empty-order' => 'Bado hujaagiza bidhaa yoyote',
                 'order' => 'Oda',
                 'order-date' => 'Tarehe ya Oda',
